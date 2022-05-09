@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #moramo dodati svoje aplikacije
     'accounts.apps.AccountsConfig',
     'car_market.apps.CarMarketConfig',
-    #crispy_forms ->
+    #crispy_forms -> omogućuje prilagodbu svojstava obrazaca (kao što su metoda, gumb za slanje ili CSS klase) 
     'crispy_forms'
 ]
 
