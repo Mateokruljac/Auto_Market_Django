@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class ="col-md-10 offset-md-1 mt-5">
+            <form action ="" method="post" autocomplete="off">
+          <ul class="list-group">
+              {% csrf_token %}
+               
+              <li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET  All cars</li>
+              {% for all_cars in car_list %}
+              <li class="list-group-item">Name: {{all_cars.name}} </li>
+              <li class="list-group-item">Fuel: {{all_cars.fuel}}</li>
+              <li class="list-group-item">Year: {{all_cars.year}}</li>
+              <li class="list-group-item">Km: {{all_cars.km}}</li>
+              <li class="list-group-item">Engine volume: {{all_cars.engine_volume}}</li>
+              <li class="list-group-item active"></li>
+              
+
+              {% endfor %}   
+              <li class="list-group-item"><a href = "{% url 'base' %}"> Go Back!</a></li>
+            </ul>
+            </form>
+          </div>
+        </div>
+        {% for message in messages %}
+        <h3> {{message}} </h3>
+    </div>
+    {% endfor %}
+        <div>
+        
+                  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>        
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" 
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        {% endblock content %}
+    </body>
+        

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %} <!--stilizacija-->
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class ="col-md-10 offset-md-1 mt-5">
+            <form action ="" method="post" autocomplete="off">
+          <ul class="list-group">
+              {% csrf_token %} <!--potreban za rad i dohvaćenje-->
+               <!-- koristimo form jer smo ga u dictionary definirali u pogledima. i za form nam vraća 
+               željenu vrijednost -->
+              <li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET Create</li>
+              <li class="list-group-item">{{form.name|as_crispy_field}}</li>
+              <li class="list-group-item">{{form.fuel|as_crispy_field}}</li>
+              <li class="list-group-item">{{form.year|as_crispy_field}}</li>
+              <li class="list-group-item">{{form.km|as_crispy_field}}</li>
+              <li class="list-group-item">{{form.engine_volume|as_crispy_field}}</li>
+              <li class="list-group-item">{{form.brand_id|as_crispy_field}}</li>
+              <li class="list-group-item"><a href = "{% url 'base' %}"> Go Back!</a></li> <!-- vraćamo nazad na glavnu stranicu-->
+            
+              <br><button type ="submit" class = "btn btn-success"><i class="fa-solid fa-database"></i>Save</button><i class="fa-solid fa-database"></i>
+
+                  
+            </ul>
+            </form>
+            <div><!-- ovdje imamo for petlju koja će ispisati potrebnu poruku-->
+                {% for message in messages %} 
+                <h3> {{message}} </h3>
+                {% endfor %}
+            </div>
+            
+          </div>
+        </div>
+                  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>        
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" 
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        
+      </body>
+      {% endblock content %}
