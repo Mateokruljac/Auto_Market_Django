@@ -5,17 +5,20 @@
 <body>
     <div class="container">
         <div class ="col-md-10 offset-md-1 mt-5">
-            <form action ="" method="post" autocomplete="off">
           <ul class="list-group">
-              {% csrf_token %}
-               
-              <li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET  All cars</li>
-              {% for all_cars in car_list %}
-              <li class="list-group-item">Name: {{all_cars.name}} <a href="{% url 'update' all_cars.id %} " >Modify:</a> </li>
-              <li class="list-group-item">Fuel: {{all_cars.fuel}}</li>
-              <li class="list-group-item">Year: {{all_cars.year}}</li>
-              <li class="list-group-item">Km: {{all_cars.km}}</li>
+            
+            
+            <li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET  All cars</li>
+            {% for all_cars in car_list %}
+            <li class="list-group-item">Name: {{all_cars.name}} </li>
+            <li class="list-group-item">Fuel: {{all_cars.fuel}}</li>
+            <li class="list-group-item">Year: {{all_cars.year}}</li>
+            <li class="list-group-item">Km: {{all_cars.km}}</li>
               <li class="list-group-item">Engine volume: {{all_cars.engine_volume}}</li>
+              <li class="list-group-item"><a href="{% url 'update_car' all_cars.id %} "  ><button>Modify: {{all_cars.name}}</button></a></li>
+              <form action ="{% url 'delete' all_cars.id %}" method="post" autocomplete="off">
+                      {% csrf_token %}
+                <li class="list-group-item"><button type ="submit"> Delete: {{all_cars.name}}</button></li>
               <li class="list-group-item active"></li>
               
 

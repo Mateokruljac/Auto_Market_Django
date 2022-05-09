@@ -26,8 +26,8 @@ def create (requests):
         form = CarForms(requests.POST)
         # potrebno je provjeriti je li zahtjev ispravan, ako je sačuvati ga i ispisati poruku da zna i korisnik da je sve uspješno
         if form.is_valid():
-            messages.info(requests,"New car successfully created!")
             form.save();
+            messages.info(requests,"New car successfully created!")
             return render(requests,"base.html")  #vraća na osnovnu stranicu 
         else:
             return HttpResponse("<h3> Something went wrong </h3>") 
@@ -42,7 +42,7 @@ def update_car (requests,id=0): # id nam je potreban da odredimo koji točno aut
         else:
             car = Car.objects.get(pk=id)
             form = CarForms(instance=car)
-        return render(requests, "modify.html", {'form': form})
+        return render(requests, "create.html", {'form': form})
  # ako je zahtjev post, tj unosimo podatke
  else:
         if id == 0:
@@ -56,12 +56,11 @@ def update_car (requests,id=0): # id nam je potreban da odredimo koji točno aut
         return render(requests,'base.html')
 
 
-def delete(requests, car_id):
+def delete(requests,id):
     #potrebno je izabrati id autombila kojeg želimo izbrisati
-    car_id = int(car_id)
     # u slučaju da automobil ne postoji izbacit će errror. Da se to ne bi dogodilo vratit ćemo ga na glavnu stranicu
     try:
-        select_car = Car.objects.get(id = car_id)
+        select_car = Car.objects.get(id = id)
     except Car.DoesNotExist:
         return render (requests,"base.html")
     #ako je sve uspješno automobil će biti izbrisan, te ćemo korisnika vratiti na glavni izbor kako bi se odlučio za sljedeću radnju
