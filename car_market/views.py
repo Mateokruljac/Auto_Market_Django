@@ -34,7 +34,7 @@ def create (requests):
         
 
 
-def update (requests,id=0): # id nam je potreban da odredimo koji točno automobil želimo nadograditi
+def update_car (requests,id=0): # id nam je potreban da odredimo koji točno automobil želimo nadograditi
  # ako je zahtjev GET tj. ako povlačimo podatke
  if requests.method == "GET":
         if id == 0:
