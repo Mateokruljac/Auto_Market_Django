@@ -1,8 +1,10 @@
+import time
 from django.shortcuts  import render
 from car_market.forms  import CarForms
 from django.contrib    import messages
 from car_market.models import Car
 from django.http       import HttpResponse
+
 # Create your views here.
 
 # potrebni su nam pogledi: (lista, koja će biti dostupna u svim mogućnostima), kreiranje, modificiranje, brisnje
@@ -12,7 +14,7 @@ def base (requests):
 def see_all (requests):
     # ostvaruje se pristup svim automobilima u bazi podataka
     if requests.method == "GET": 
-     car_list = Car.objects.all()# svi automobili
+     car_list = Car.objects.all().order_by("name")# svi automobili
      # vraća na stranicu see_all i na mjestu car_list vraća popis automobila    
      return render (requests,"see_all.html",{"car_list" : car_list })
 
@@ -68,4 +70,74 @@ def delete(requests,id):
     return render (requests,"base.html")
 
 
-
+def filters (requests):
+       
+    if  requests.method =="POST":
+        option = requests.POST["option"]
+        # if user is interesed in Diesel cars
+        if option.capitalize() == "Diesel": 
+          car_list = Car.objects.all().order_by("name").filter(fuel = "Diesel")
+          if len(car_list) == 0:
+              messages.info("We can't find a car with that feature")
+              return render(requests,"filter.html")
+          else:
+            return render(requests,"search.html",{"car_list":car_list})
+        
+        # if user is interesed in Gasoline cars
+        elif option.capitalize() == "Gasoline": 
+          car_list = Car.objects.all().order_by("name").filter(fuel = "Gasoline")
+         
+          if  len(car_list) == 0:
+              messages.info(requests,"We can't find a car with that feature")
+              return render( requests,"filter.html")
+          else:
+            return render(requests,"search.html",{"car_list":car_list})
+        
+        # if user is interesed in Mercedes cars
+        elif option.capitalize() == "Mercedes": 
+           car_list = Car.objects.all().order_by("name").filter(brand_id = 4)
+           if len(car_list) == 0:
+             messages.info(requests,"We can't find a car with that feature")
+             return render(requests,"filter.html")
+           else:
+               return render(requests,"search.html",{"car_list":car_list})
+            
+        # if user is interesed in Mazda cars
+        elif option.capitalize() == "Mazda": 
+           car_list = Car.objects.all().order_by("name").filter(brand_id = 3)
+           if len(car_list) == 0:
+             messages.info(requests,"We can't find a car with that feature")
+             return render(requests,"filter.html")
+           else:
+               return render(requests,"search.html",{"car_list":car_list})
+            
+        # if user is interesed in Audi cars  
+        elif option.capitalize() == "Audi": 
+           car_list = Car.objects.all().order_by("name").filter(brand_id = 1)
+           if len(car_list) == 0:
+             messages.info(requests,"We can't find a car with that feature")
+             return render(requests,"filter.html")
+           else:
+               return render(requests,"search.html",{"car_list":car_list})
+            
+        # if user is interesed in Hyundai cars
+        elif option.capitalize() == "Hyundai": 
+           car_list = Car.objects.all().order_by("name").filter(brand_id = 5)
+           if len(car_list) == 0:
+             messages.info(requests,"We can't find a car with that feature")
+             return render(requests,"filter.html")
+           else:
+               return render(requests,"search.html",{"car_list":car_list})
+            
+        # if user is interesed in BMW cars
+        elif option.capitalize() == "Bmw": 
+           car_list = Car.objects.all().order_by("name").filter(brand_id = 2)
+           if len(car_list) == 0:
+             messages.info(requests,"We can't find a car with that feature")
+             return render(requests,"filter.html")
+           else:
+               return render(requests,"search.html",{"car_list":car_list})
+            
+    
+    else:
+        return render(requests,"filter.html")

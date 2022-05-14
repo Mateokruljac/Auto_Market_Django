@@ -12,31 +12,31 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/solid.min.css">
 
-    <title>Car_market Login</title>
+    <title>Car_market Filter</title>
 </head>
 
  {% block content %}
   <body>
       <div class="container">
           <div class ="col-md-10 offset-md-1 mt-5">
-          <form  action ="login" method ="post">
+          <form  action ="filters" method ="post">
               {% csrf_token %}
           
             <ul class="list-group">
-                <li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET LOGIN </li>
-                <li class="list-group-item"><input type ="text" name ="username" placeholder="Username"></li>
-                <li class="list-group-item" ><input type ="password" name ="password" placeholder="Password"></li>
+                <li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET FILTER </li>
+                <li class="list-group-item"><input type ="text" name ="option" placeholder="Type name/fuel"></li>
                 <li class="list-group-item" ><input type = "submit"></li>
-                <li class="list-group-item" ><a href = "{% url 'register' %}">Registration</a></li>
+                <li class="list-group-item"><a href = "{% url 'base' %}"> Go Back!</a></li>
+                {% for message in messages %}  
+                   <h3>{{message}}</h3>
+                 </div>
+                       {% endfor %}
               </ul>
           
         </form>
-        <div>
-            {% for message in messages %}  
-               <h3>{{message}}</h3>
-             </div>
-                   {% endfor %}
+             
             </div>
+            <div>
           </div>
           
                     

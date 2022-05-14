@@ -8,11 +8,11 @@ class Brand(models.Model):
         return self.title # vratit će nam naziv umjesto "objekt"
 
 class Car (models.Model):
-    name = models.CharField(max_length=30)
-    year = models.IntegerField()
+    name = models.CharField(max_length=30,blank = False) #required
+    year = models.IntegerField(default= 0, blank = False,)
     fuel = models.CharField(max_length=30)
-    km = models.IntegerField()
+    km = models.IntegerField(default= 0, blank = False)
     engine_volume = models.IntegerField()
     #svaki put kada izbrišemo brand mora se izbrisati i auto
-    brand_id = models.ForeignKey(Brand,on_delete=models.CASCADE)
+    brand_id = models.ForeignKey(Brand,on_delete=models.CASCADE,blank = False)
     
