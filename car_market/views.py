@@ -1,4 +1,3 @@
-import time
 from django.shortcuts  import render
 from car_market.forms  import CarForms
 from django.contrib    import messages
@@ -53,8 +52,8 @@ def update_car (requests,id=0): # id nam je potreban da odredimo koji točno aut
             selected_car = Car.objects.get(pk=id) # biramo automobil na temelju id
             form = CarForms(requests.POST,instance= selected_car)
         #potrebno je provjeriti je li ispravno i aoko je sačuvati, te vratiti na glavnu stranicu
-        if form.is_valid():
-            form.save();
+        if form.is_valid(): 
+            form.save(); # to mysql database 
         return render(requests,'base.html')
 
 
@@ -63,11 +62,13 @@ def delete(requests,id):
     # u slučaju da automobil ne postoji izbacit će errror. Da se to ne bi dogodilo vratit ćemo ga na glavnu stranicu
     try:
         select_car = Car.objects.get(id = id)
-    except Car.DoesNotExist:
+        #ako je sve uspješno automobil će biti izbrisan, te ćemo korisnika vratiti na glavni izbor kako bi se odlučio za sljedeću radnju
+        select_car.delete();
         return render (requests,"base.html")
-    #ako je sve uspješno automobil će biti izbrisan, te ćemo korisnika vratiti na glavni izbor kako bi se odlučio za sljedeću radnju
-    select_car.delete();
-    return render (requests,"base.html")
+    except Car.DoesNotExist:
+        messages.info (requests,"Car does not exist!")
+        return render (requests,"base.html")
+    
 
 
 def filters (requests):
@@ -137,7 +138,9 @@ def filters (requests):
               return render(requests,"filter.html")
            else:
                return render(requests,"search.html",{"car_list":car_list})
-            
-    
+        
+        else: 
+            messages.info(requests,"We can't find a car with that feature")
+            return render(requests,"filter.html")
     else:
         return render(requests,"filter.html")

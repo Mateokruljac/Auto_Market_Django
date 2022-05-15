@@ -11,5 +11,7 @@ class CarForms (forms.ModelForm):
         super(CarForms,self).__init__(*args,**kwargs) # primjer nasljeđivanja
         #upravljanje poljima. U polju brand_id su bile crtice, sada će pisati select
         self.fields["brand_id"].empty_label = "select"
-        
-        
+        self.fields["name"] = forms.CharField(label = "Car name and model.    (Example. Mazda cx5)",widget=forms.TextInput(attrs={"placeholder":"Car"}))
+        self.fields["fuel"] = forms.CharField(label = "Diesel/Gasoline",widget=forms.TextInput(attrs ={"placeholder" : "Fuel"}))
+        self.fields["brand_id"].label = "Brand"
+       
