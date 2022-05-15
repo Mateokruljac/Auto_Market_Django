@@ -133,8 +133,8 @@ def filters (requests):
         elif option.capitalize() == "Bmw": 
            car_list = Car.objects.all().order_by("name").filter(brand_id = 2)
            if len(car_list) == 0:
-             messages.info(requests,"We can't find a car with that feature")
-             return render(requests,"filter.html")
+              messages.info(requests,"We can't find a car with that feature")
+              return render(requests,"filter.html")
            else:
                return render(requests,"search.html",{"car_list":car_list})
             
