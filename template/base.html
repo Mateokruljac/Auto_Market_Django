@@ -28,9 +28,9 @@
                  pa onda opcija pod if
                  -->
                 <li class="list-group-item active" title ="Welcome to Car Market">Hi {{user.first_name}}. Welcome to CAR MARKET </li>
-                <li class="list-group-item" ><a href = "{% url 'create' %}">Create new car</a></li>
                 <li class="list-group-item" ><a href = "{% url 'see_all' %}">See all cars</a></li>
                 <li class="list-group-item" ><a href = "{% url 'filters' %}">Filter</a></li>
+                <li class="list-group-item" ><a href = "{% url 'account_views' %}">My account</a></li>
                 <li class="list-group-item" ><a href = "{% url 'logout' %}">logout</a></li>
 
                 {% else %}

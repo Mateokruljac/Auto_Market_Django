@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Brand(models.Model):
     title = models.CharField(max_length=30)
@@ -15,4 +15,4 @@ class Car (models.Model):
     engine_volume = models.IntegerField()
     #svaki put kada izbrišemo brand mora se izbrisati i auto
     brand_id = models.ForeignKey(Brand,on_delete=models.CASCADE,blank = False)
-    
+ 

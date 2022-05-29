@@ -137,3 +137,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #ovo je ključno ukoliko želimo postići LOGOUT. Inače će nam pokazati error.  
 #PAZIIII
 LOGOUT_REDIRECT_URL = 'base.html'
+

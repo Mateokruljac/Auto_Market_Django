@@ -1,5 +1,6 @@
 from django import forms
 from .models import Car
+from django.contrib.auth.models import User
 class CarForms (forms.ModelForm):
     # mijenja način rada ili ponašanje, opcije...
     class Meta: # inner klasa kojom dodjeljujemo metapodatak -> odnosno sve što nije polje
@@ -14,4 +15,5 @@ class CarForms (forms.ModelForm):
         self.fields["name"] = forms.CharField(label = "Car name and model.    (Example. Mazda cx5)",widget=forms.TextInput(attrs={"placeholder":"Car"}))
         self.fields["fuel"] = forms.CharField(label = "Diesel/Gasoline",widget=forms.TextInput(attrs ={"placeholder" : "Fuel"}))
         self.fields["brand_id"].label = "Brand"
-       
+
+    

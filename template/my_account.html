@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% csrf_token %}
+<div class="container">
+<div class ="col-md-10 offset-md-1 mt-5">
+<form action ="" method="post" autocomplete="off">
+<ul class="list-group">
+<li class="list-group-item active" title ="Welcome to Car Market">CAR MARKET My account</li>
+<li class="list-group-item">My account</li>
+<li class="list-group-item">My cars</li>
+<li class="list-group-item"><a href = "{% url 'create' %}">Create a car</a></li>
+<li class="list-group-item"><a href ="{% url 'base' %}" >Go back</a></li>
+<li class="list-group-item"><a href = "{% url 'logout' %}">logout</a></li>
+</ul>
+</form>
+
+</div>
+</div>
+
+{% endblock content %}

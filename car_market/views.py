@@ -21,6 +21,7 @@ def create (requests):
     # nakon što smo kreirali CarForms moramo ga i uvrstiti među poglede kako bismo mogli s njim raditi 
     if requests.method == "GET":
         form  = CarForms()
+        
         return render(requests,"create.html",{"form":form})
     else:
         # potrebno je kreirati instancu carForms i popuniti podacima iz zahtjeva
@@ -144,5 +145,7 @@ def filters (requests):
             return render(requests,"filter.html")
     else:
         return render(requests,"filter.html")
-    
-    
+
+def account_views (requests):
+    return render (requests,"my_account.html")  
+
